@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if($this->app->environment('production')) {
+            URL::forceScheme('https');
+        };
+
         View::composer(
             'layouts/admin/template', 'App\Http\ViewComposers\AdminHeaderComposer'
         );
